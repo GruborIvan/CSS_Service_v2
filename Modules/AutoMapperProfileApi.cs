@@ -2,8 +2,10 @@
 using CSS_Service.API.Models;
 using CSS_Service.API.Models.NarudzbinaDTOs;
 using CSS_Service.API.Models.ServiceDTOs;
+using CSS_Service.Domain.Commands;
 using CSS_Service.Domain.Models;
 using CSS_Service.Domain.Models.CollectionModels;
+using CSS_Service.Domain.Models.PostModels;
 
 namespace CSS_Service.API.Modules
 {
@@ -30,6 +32,12 @@ namespace CSS_Service.API.Modules
             // Collections.
             CreateMap<AllDataNarudzbinaModel, NarudzbinaReturnDto>();
             CreateMap<AllDataServiceModel, ServiceReturnDto>();
+
+            CreateMap<NarudzbinaPostModelDto, StartCreateNarudzbina>()
+                .ForCtorParam("cmdBase", opt => opt.MapFrom(_ => new CmdSeed(Guid.NewGuid())));
+            
+            CreateMap<NarudzbinaPostDto, NarudzbinaPost>();
+            CreateMap<NarudzbinaItemPostDto, NarudzbinaItemPost>();
         }
     }
 }

@@ -4,6 +4,7 @@ using CSS_Service.Domain.Queries;
 using CSS_Service.Infrastructure.Models;
 using CSS_Service.Infrastructure.Modules;
 using CSS_Service.Infrastructure.Repositories;
+using CSS_Service.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -54,6 +55,7 @@ builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IContactPersonRepository, ContactPersonRepository>();
 builder.Services.AddScoped<INarudzbinaRepository, NarudzbinaRepository>();
 builder.Services.AddScoped<INarudzbinaItemRepository, NarudzbinaItemRepository>();
+builder.Services.AddScoped<INarudzbinaService, NarudzbinaService>();
 
 var app = builder.Build();
 

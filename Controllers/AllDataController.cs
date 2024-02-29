@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CSS_Service.API.Models;
 using CSS_Service.API.Models.NarudzbinaDTOs;
+using CSS_Service.Domain.Commands;
 using CSS_Service.Domain.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -31,10 +31,14 @@ namespace CSS_Service.API.Controllers
         {
             try
             {
+                // CREATE NARUDZBINA.
                 _logger.LogInformation($"Received POST request for PostNarudzbina/AllData.");
 
-                // INSERT LOGIC.
+                var startCreateNarudzbina = _mapper.Map<StartCreateNarudzbina>(content);
 
+                await _mediator.Send(startCreateNarudzbina);
+
+                // GET & RETURN ALL DATA.
                 _logger.LogInformation($"Retrieving data for PostNarudzbina/AllData.");
 
                 var allData = await _mediator.Send(new GetAllNarudzbinaData(content.DocType, content.DocTypeService));
